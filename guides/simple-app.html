@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A simple application &mdash; triotp 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running a webserver" href="webserver.html" />
+    <link rel="prev" title="Message-Passing between tasks with mailboxes" href="message-passing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> triotp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="message-passing.html">Message-Passing between tasks with mailboxes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">A simple application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-generic-server">The Generic Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-client-process">The client process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-supervisor">The supervisor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-application">The application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-node">Starting the node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webserver.html">Running a webserver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">triotp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>A simple application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guides/simple-app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="a-simple-application">
+<h1>A simple application<a class="headerlink" href="#a-simple-application" title="Permalink to this headline"></a></h1>
+<p>In this tutorial, we will create a single application with 2 processes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a generic server which echo messages</p></li>
+<li><p>a client to interact with the generic server</p></li>
+</ul>
+</div></blockquote>
+<p>First, let’s create our folder structure:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkdir simple_triotp
+$ touch simple_triotp/__init__.py
+</pre></div>
+</div>
+<section id="the-generic-server">
+<h2>The Generic Server<a class="headerlink" href="#the-generic-server" title="Permalink to this headline"></a></h2>
+<p>A generic server is an abstract of a process with a mailbox receiving messages
+and sending responses back to the caller (server/client architecture).</p>
+<p>Let’s create a file <cite>simple_triotp/echo_server.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp.helpers</span> <span class="kn">import</span> <span class="n">current_module</span>
+<span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">gen_server</span>
+
+
+<span class="vm">__module__</span> <span class="o">=</span> <span class="n">current_module</span><span class="p">()</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">init_arg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span>
+
+<span class="c1"># gen_server callbacks</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="n">_init_arg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;nostate&#39;</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;exited with reason&#39;</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="s1">&#39;and state&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">_caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">match</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">case</span> <span class="p">(</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Reply</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+
+        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+            <span class="n">exc</span> <span class="o">=</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;unkown command&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Reply</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_cast</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">match</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">case</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Stop</span><span class="p">(),</span> <span class="n">state</span><span class="p">)</span>
+
+        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+            <span class="n">exc</span> <span class="o">=</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;unknown command&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Stop</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s look at it step by step:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">init_arg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will start our generic server:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>the first argument is the module which defines our callbacks:</dt><dd><ul>
+<li><p><cite>init</cite>: to create the state of the server</p></li>
+<li><p><cite>terminate</cite>: called whenever the generic server stops</p></li>
+<li><p><cite>handle_call</cite>: called whenever a call to the generic server is made</p></li>
+<li><p><cite>handle_cast</cite>: called whenever a cast to the generic server is made</p></li>
+<li><p><cite>handle_info</cite>: called whenever a message is sent directly to the generic server’s mailbox</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>the second argument is the value passed to the <cite>init</cite> callback</p></li>
+<li><p>the third argument is the name to use to send message to the generic server’s mailbox</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The <cite>gen_server.call()</cite> function sends a message to the generic server’s mailbox,
+and then wait for a response. The request is handled by the <cite>handle_call</cite> callback.</p>
+<p><strong>NB:</strong> If the response is an exception, it will be raised as soon as it is
+received, delegating the error handling to the caller.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>gen_server.cast()</cite> function sends a message to the generic server’s mailbox,
+but it does not wait for a response and returns immediately. The request will be
+handled by the <cite>handle_cast</cite> callback.</p>
+<p>You can also send messages directly to the generic server’s maiblox:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">notify</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;notify&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The message will then be handled by the <cite>handle_info</cite> callback.
+This is useful to allow a generic server to send messages to itself.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="n">_init_arg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;nostate&#39;</span>
+</pre></div>
+</div>
+<p>This callback creates and return the state for the generic server. This state
+will be passed to every other callback. It can be anything like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a data structure</p></li>
+<li><p>a database connection</p></li>
+<li><p>a state machine</p></li>
+<li><p>…</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;exited with reason&#39;</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="s1">&#39;and state&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This callback is called when the generic server is stopped. The <cite>reason</cite> is either
+<cite>None</cite> or the exception that triggered the generic server to stop.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">_caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">match</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">case</span> <span class="p">(</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Reply</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+
+        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+            <span class="n">exc</span> <span class="o">=</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;unkown command&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Reply</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This callback is called to handle requests made with <cite>gen_server.call()</cite>, it
+must always return a tuple whose second element is the new state (for later calls
+to any callback function).</p>
+<p>The first argument can be either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>gen_server.NoReply()</cite>: implying a call to <cite>gen_server.reply()</cite> will be made
+in the future to send the response back to the caller</p></li>
+<li><p><cite>gen_server.Reply()</cite>: to send a response back to the caller</p></li>
+<li><p><cite>gen_server.Stop(reason=None)</cite>: to exit the generic server. The caller will
+then raise a <cite>GenServerExited</cite> exception</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle_cast</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">match</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">case</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Stop</span><span class="p">(),</span> <span class="n">state</span><span class="p">)</span>
+
+        <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+            <span class="n">exc</span> <span class="o">=</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;unknown command&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Stop</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This callback is called to handle requests made with <cite>gen_server.call()</cite>, it
+must always return a tuple whose second element is the new state (for later calls
+to any callback function).</p>
+<p>The first argument can be either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>gen_server.NoReply()</cite>: no reply will be sent to the caller</p></li>
+<li><p><cite>gen_server.Stop(reason=None)</cite>: to exit the generic server</p></li>
+</ul>
+</div></blockquote>
+<p><strong>NB:</strong> the <cite>handle_info</cite> callback works exactly the same.</p>
+</section>
+<section id="the-client-process">
+<h2>The client process<a class="headerlink" href="#the-client-process" title="Permalink to this headline"></a></h2>
+<p>This task will only send some messages to the generic server, and finally stop it.</p>
+<p>Let’s create a <cite>simple_triotp/echo_client.py</cite> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">echo_server</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">echo_server</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;hello&#39;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">echo_server</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;world&#39;</span>
+
+    <span class="k">await</span> <span class="n">echo_server</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="the-supervisor">
+<h2>The supervisor<a class="headerlink" href="#the-supervisor" title="Permalink to this headline"></a></h2>
+<p>A supervisor handles automatic restart of its children whenever they exit
+prematurely, or after a crash.</p>
+<p>It is useful to restart a generic server handling connections to a database,
+after a temporary network failure.</p>
+<p>In this case, the supervisor will have 2 children, the generic server and the
+client:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">supervisor</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">echo_server</span><span class="p">,</span> <span class="n">echo_client</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">supervisor</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;server&#39;</span><span class="p">,</span>
+            <span class="n">task</span><span class="o">=</span><span class="n">echo_server</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">restart</span><span class="o">=</span><span class="n">supervisor</span><span class="o">.</span><span class="n">restart_strategy</span><span class="o">.</span><span class="n">TRANSIENT</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">supervisor</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;client&#39;</span><span class="p">,</span>
+            <span class="n">task</span><span class="o">=</span><span class="n">echo_client</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">restart</span><span class="o">=</span><span class="n">supervisor</span><span class="o">.</span><span class="n">restart_strategy</span><span class="o">.</span><span class="n">TRANSIENT</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">opts</span> <span class="o">=</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">options</span><span class="p">(</span>
+        <span class="n">max_restarts</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">max_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">await</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are 3 supported restart strategy:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>PERMANENT</cite>: the task should always be restarted</p></li>
+<li><p><cite>TRANSIENT</cite>: the task should be restarted only if it crashed</p></li>
+<li><p><cite>TEMPORARY</cite>: the task should never be restarted</p></li>
+</ul>
+</div></blockquote>
+<p>If a child restart more than <cite>max_restarts</cite> within a <cite>max_seconds</cite> period, the
+supervisor will also crash (maybe a parent supervisor will try to restart it).</p>
+</section>
+<section id="the-application">
+<h2>The application<a class="headerlink" href="#the-application" title="Permalink to this headline"></a></h2>
+<p>An application is the root of a supervision tree.</p>
+<p>We’ll use this to start our supervisor, let’s create a file
+<cite>simple_triotp/echo_app.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp.helpers</span> <span class="kn">import</span> <span class="n">current_module</span>
+<span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">application</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">echo_supervisor</span>
+
+
+<span class="vm">__module__</span> <span class="o">=</span> <span class="n">current_module</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">spec</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">application</span><span class="o">.</span><span class="n">app_spec</span><span class="p">(</span>
+        <span class="n">module</span><span class="o">=</span><span class="vm">__module__</span><span class="p">,</span>
+        <span class="n">start_arg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">permanent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">_start_arg</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">echo_supervisor</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="starting-the-node">
+<h2>Starting the node<a class="headerlink" href="#starting-the-node" title="Permalink to this headline"></a></h2>
+<p>Finally, we need to create our entrypoint, this can be done in the file
+<cite>simple_triotp/main.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">node</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">echo_app</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">apps</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">echo_app</span><span class="o">.</span><span class="n">spec</span><span class="p">(),</span>
+    <span class="p">])</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now, you can run the whole program with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python -m simple_triotp.main
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="message-passing.html" class="btn btn-neutral float-left" title="Message-Passing between tasks with mailboxes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="webserver.html" class="btn btn-neutral float-right" title="Running a webserver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, David Delassus &lt;david.jose.delassus@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

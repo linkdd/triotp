@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message-Passing between tasks with mailboxes &mdash; triotp 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="A simple application" href="simple-app.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> triotp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Message-Passing between tasks with mailboxes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initializing-the-mailbox-registry">Initializing the mailbox registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-mailbox">Creating a mailbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-and-receiving-messages">Sending and receiving messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simple-app.html">A simple application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webserver.html">Running a webserver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">triotp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Message-Passing between tasks with mailboxes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guides/message-passing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="message-passing-between-tasks-with-mailboxes">
+<h1>Message-Passing between tasks with mailboxes<a class="headerlink" href="#message-passing-between-tasks-with-mailboxes" title="Permalink to this headline"></a></h1>
+<p><strong>trio</strong> provides a mechanism to exchange messages between asynchronous tasks.</p>
+<p>The <strong>triotp</strong> mailbox is an abstraction of that mechanism. This abstraction can
+be used without the rest of <strong>triotp</strong>.</p>
+<p>In this tutorial, we’ll see how it works.</p>
+<section id="initializing-the-mailbox-registry">
+<h2>Initializing the mailbox registry<a class="headerlink" href="#initializing-the-mailbox-registry" title="Permalink to this headline"></a></h2>
+<p>This step is done automatically when a node starts, but it is required if you
+want to use it standalone:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">mailbox</span>
+<span class="kn">import</span> <span class="nn">trio</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">mailbox</span><span class="o">.</span><span class="n">_init</span><span class="p">()</span>
+
+
+<span class="n">trio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-mailbox">
+<h2>Creating a mailbox<a class="headerlink" href="#creating-a-mailbox" title="Permalink to this headline"></a></h2>
+<p>There is 2 ways of creating a mailbox:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+    <span class="c1"># do stuff</span>
+    <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">destroy</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="c1"># do stuff</span>
+</pre></div>
+</div>
+<p>The <cite>mid</cite> variable holds a unique reference to the mailbox. But it can be hard to
+pass this reference between tasks. Therefore, you can register a name referencing
+this identifier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+    <span class="n">mailbox</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+    <span class="c1"># do stuff</span>
+    <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">):</span>
+        <span class="c1"># do stuff</span>
+</pre></div>
+</div>
+</section>
+<section id="sending-and-receiving-messages">
+<h2>Sending and receiving messages<a class="headerlink" href="#sending-and-receiving-messages" title="Permalink to this headline"></a></h2>
+<p>In this example, we create a mailbox, wait for a single message, then close it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">mailbox</span>
+<span class="kn">import</span> <span class="nn">trio</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">task_status</span><span class="o">=</span><span class="n">trio</span><span class="o">.</span><span class="n">TASK_STATUS_IGNORED</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="n">task_status</span><span class="o">.</span><span class="n">started</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">receive</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">producer</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">trio</span><span class="o">.</span><span class="n">open_nursery</span><span class="p">()</span> <span class="k">as</span> <span class="n">nursery</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">nursery</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">consumer</span><span class="p">)</span>
+        <span class="n">nursery</span><span class="o">.</span><span class="n">start_soon</span><span class="p">(</span><span class="n">producer</span><span class="p">)</span>
+
+
+<span class="n">trio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simple-app.html" class="btn btn-neutral float-right" title="A simple application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, David Delassus &lt;david.jose.delassus@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TriOTP, the OTP framework for Python Trio &mdash; triotp 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="guides/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> triotp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">triotp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>TriOTP, the OTP framework for Python Trio</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="triotp-the-otp-framework-for-python-trio">
+<h1>TriOTP, the OTP framework for Python Trio<a class="headerlink" href="#triotp-the-otp-framework-for-python-trio" title="Permalink to this headline"></a></h1>
+<p>See <a class="reference external" href="https://linkdd.github.io/triotp">documentation</a> for more informations.</p>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="License" src="https://img.shields.io/pypi/l/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Development Status" src="https://img.shields.io/pypi/status/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Latest release" src="https://img.shields.io/pypi/v/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Supported Python implementations" src="https://img.shields.io/pypi/implementation/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp"><img alt="Download format" src="https://img.shields.io/pypi/wheel/triotp.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://github.com/linkdd/triotp"><img alt="Build status" src="https://github.com/linkdd/triotp/actions/workflows/test-suite.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://coveralls.io/r/linkdd/triotp"><img alt="Code test coverage" src="https://coveralls.io/repos/github/linkdd/triotp/badge.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Downloads" src="https://img.shields.io/pypi/dm/triotp.svg?style=flat-square" /></a>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>This project is a simplified implementation of the <a class="reference external" href="https://erlang.org">Erlang</a>/<a class="reference external" href="https://elixir-lang.org/">Elixir</a> <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Telecom_Platform">OTP</a>
+framework.</p>
+<p>It is built on top of the <a class="reference external" href="https://trio.readthedocs.io">Trio</a> async library and provides:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>applications:</strong> the root of a supervision tree</p></li>
+<li><p><strong>supervisors:</strong> automatic restart of children tasks</p></li>
+<li><p><strong>mailboxes:</strong> message-passing between tasks</p></li>
+<li><p><strong>gen_servers:</strong> generic server task</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="why">
+<h2>Why ?<a class="headerlink" href="#why" title="Permalink to this headline"></a></h2>
+<p>Since I started writing Erlang/Elixir code, I’ve always wanted to use its
+concepts in other languages.</p>
+<p>I made this library for fun and most importantly: to see if it was possible.
+As it turns out, it is!</p>
+</section>
+</section>
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/message-passing.html">Message-Passing between tasks with mailboxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/simple-app.html">A simple application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/webserver.html">Running a webserver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/triotp.html">triotp package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guides/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, David Delassus &lt;david.jose.delassus@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
