@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "triotp"
+version = "0.1.0"
+license = "MIT"
+
+description = "The OTP framework for Python Trio"
+keywords = ["trio", "async", "otp", "triotp"]
+authors = ["David Delassus <david.jose.delassus@gmail.com>"]
+
+homepage = "https://github.com/linkdd/triotp"
+repository = "https://github.com/linkdd/triotp"
+
+readme = "README.rst"
+include = [
+  "LICENSE.txt"
+]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: Trio",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+trio = "^0.19.0"
+tenacity = "^8.0.1"
+Logbook = "^1.5.3"
+trio-util = "^0.7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-trio = "^0.7.0"
+Sphinx = "^4.3.0"
+sphinx-rtd-theme = "^1.0.0"
+pytest-cov = "^3.0.0"
+black = "^21.11b1"
+mypy = "^0.910"
+coveralls = "^3.3.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
