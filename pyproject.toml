@@ -39,6 +39,9 @@ black = "^24.1.1"
 mypy = "^1.8.0"
 coveralls = "^3.3.1"
 
+[tool.poetry.group.docs.dependencies]
+toml = "^0.10.2"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
