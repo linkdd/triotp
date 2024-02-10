@@ -4,7 +4,7 @@ Running a webserver
 In this tutorial, you'll learn how to run an ASGI or WSGI web application as part
 of your supervision tree.
 
-Before starting, you'll need [hypercorn](https://pgjones.gitlab.io/hypercorn/):
+Before starting, you'll need `hypercorn <https://pgjones.gitlab.io/hypercorn/>`_:
 
 .. code-block:: shell
 
