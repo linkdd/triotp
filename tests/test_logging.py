@@ -16,19 +16,19 @@ def test_logenum():
 
 
 def test_logger(log_handler):
-    logger = logging.getLogger('pytest')
+    logger = logging.getLogger("pytest")
 
-    logger.debug('foo')
-    assert log_handler.has_debug('foo', channel='pytest')
+    logger.debug("foo")
+    assert log_handler.has_debug("foo", channel="pytest")
 
-    logger.info('foo')
-    assert log_handler.has_info('foo', channel='pytest')
+    logger.info("foo")
+    assert log_handler.has_info("foo", channel="pytest")
 
-    logger.warn('foo')
-    assert log_handler.has_warning('foo', channel='pytest')
+    logger.warn("foo")
+    assert log_handler.has_warning("foo", channel="pytest")
 
-    logger.error('foo')
-    assert log_handler.has_error('foo', channel='pytest')
+    logger.error("foo")
+    assert log_handler.has_error("foo", channel="pytest")
 
-    logger.critical('foo')
-    assert log_handler.has_critical('foo', channel='pytest')
+    logger.critical("foo")
+    assert log_handler.has_critical("foo", channel="pytest")

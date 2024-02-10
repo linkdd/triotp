@@ -6,8 +6,6 @@ import trio
 from .sample import app_a, app_b
 
 
-
-
 @pytest.mark.parametrize("max_restarts", [1, 3, 5])
 async def test_app_automatic_restart_permanent(test_data, max_restarts, log_handler):
     async with trio.open_nursery() as nursery:

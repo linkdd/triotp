@@ -157,9 +157,9 @@ class Stop:
     Return an instance of this class to stop the generic server.
     """
 
-    reason: Optional[
-        BaseException
-    ] = None  #: Eventual exception that caused the gen_server to stop
+    reason: Optional[BaseException] = (
+        None  #: Eventual exception that caused the gen_server to stop
+    )
 
 
 @dataclass

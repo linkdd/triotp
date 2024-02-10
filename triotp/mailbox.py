@@ -168,7 +168,7 @@ def unregister_all(mid: MailboxID) -> None:
 
     name_registry = context_name_registry.get()
 
-    for (name, mailbox_id) in list(name_registry.items()):
+    for name, mailbox_id in list(name_registry.items()):
         if mailbox_id == mid:
             name_registry.pop(name)
 

@@ -38,20 +38,19 @@ class Consumer:
 
 
 async def test_receive_no_timeout(mailbox_env):
-    producer = Producer('pytest')
-    consumer = Consumer('pytest')
+    producer = Producer("pytest")
+    consumer = Consumer("pytest")
 
     async with trio.open_nursery() as nursery:
         await nursery.start(consumer)
-        nursery.start_soon(producer, 'foo')
-
+        nursery.start_soon(producer, "foo")
 
     assert not consumer.timed_out
-    assert consumer.received_message == 'foo'
+    assert consumer.received_message == "foo"
 
 
 async def test_receive_on_timeout(mailbox_env):
-    consumer = Consumer('pytest', timeout=0.01)
+    consumer = Consumer("pytest", timeout=0.01)
 
     async with trio.open_nursery() as nursery:
         await nursery.start(consumer)
@@ -61,7 +60,7 @@ async def test_receive_on_timeout(mailbox_env):
 
 
 async def test_receive_too_slow(mailbox_env):
-    consumer = Consumer('pytest', timeout=0.01, with_on_timeout=False)
+    consumer = Consumer("pytest", timeout=0.01, with_on_timeout=False)
 
     with pytest.raises(trio.TooSlowError):
         async with trio.open_nursery() as nursery:
@@ -72,13 +71,13 @@ async def test_receive_too_slow(mailbox_env):
 
 
 async def test_no_mailbox(mailbox_env):
-    producer = Producer('pytest')
+    producer = Producer("pytest")
 
     with pytest.raises(mailbox.MailboxDoesNotExist):
-        await producer('foo')
+        await producer("foo")
 
     with pytest.raises(mailbox.MailboxDoesNotExist):
-        await mailbox.receive('pytest')
+        await mailbox.receive("pytest")
 
 
 async def test_direct(mailbox_env):
@@ -87,17 +86,17 @@ async def test_direct(mailbox_env):
     async with trio.open_nursery() as nursery:
         mid = await nursery.start(consumer)
         producer = Producer(mid)
-        nursery.start_soon(producer, 'foo')
+        nursery.start_soon(producer, "foo")
 
     assert not consumer.timed_out
-    assert consumer.received_message == 'foo'
+    assert consumer.received_message == "foo"
 
 
 async def test_register(mailbox_env):
-    consumer = Consumer('pytest')
+    consumer = Consumer("pytest")
 
     with pytest.raises(mailbox.MailboxDoesNotExist):
-        mailbox.register('not-found', 'pytest')
+        mailbox.register("not-found", "pytest")
 
     with pytest.raises(mailbox.NameAlreadyExist):
         async with trio.open_nursery() as nursery:
@@ -106,21 +105,21 @@ async def test_register(mailbox_env):
 
 
 async def test_unregister(mailbox_env):
-    consumer = Consumer('pytest')
-    producer = Producer('pytest')
+    consumer = Consumer("pytest")
+    producer = Producer("pytest")
 
     with pytest.raises(mailbox.MailboxDoesNotExist):
         async with trio.open_nursery() as nursery:
             await nursery.start(consumer)
 
-            mailbox.unregister('pytest')
+            mailbox.unregister("pytest")
 
             with pytest.raises(mailbox.NameDoesNotExist):
-                mailbox.unregister('pytest')
+                mailbox.unregister("pytest")
 
-            nursery.start_soon(producer, 'foo')
+            nursery.start_soon(producer, "foo")
 
 
 async def test_destroy_unknown(mailbox_env):
     with pytest.raises(mailbox.MailboxDoesNotExist):
-        await mailbox.destroy('not-found')
+        await mailbox.destroy("not-found")

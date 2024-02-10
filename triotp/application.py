@@ -34,9 +34,9 @@ class app_spec:
     permanent: bool = (
         True  #: If `False`, the application won't be restarted if it exits
     )
-    opts: Optional[
-        supervisor.options
-    ] = None  #: Options for the supervisor managing the application task
+    opts: Optional[supervisor.options] = (
+        None  #: Options for the supervisor managing the application task
+    )
 
 
 def _init(nursery: trio.Nursery) -> None:

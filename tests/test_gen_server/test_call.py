@@ -10,13 +10,12 @@ async def test_kvstore_call_delayed(test_state):
     async with trio.open_nursery() as nursery:
         resp = await kvstore.special_call.delayed(nursery)
 
-    assert resp == 'done'
+    assert resp == "done"
 
 
 async def test_kvstore_call_timeout(test_state):
     with pytest.raises(trio.TooSlowError):
         await kvstore.special_call.timedout(0.01)
-
 
 
 async def test_kvstore_call_stopped(test_state):

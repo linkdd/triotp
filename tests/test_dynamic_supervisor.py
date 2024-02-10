@@ -15,7 +15,7 @@ async def sample_task(test_data):
 
 async def sample_task_error(test_data):
     test_data.exec_count += 1
-    raise RuntimeError('pytest')
+    raise RuntimeError("pytest")
 
 
 @pytest.mark.parametrize("max_restarts", [1, 3, 5])
@@ -25,7 +25,7 @@ async def test_automatic_restart_permanent(max_restarts, log_handler, mailbox_en
     async with trio.open_nursery() as nursery:
         children = [
             supervisor.child_spec(
-                id='sample_task',
+                id="sample_task",
                 task=sample_task,
                 args=[test_data],
                 restart=supervisor.restart_strategy.PERMANENT,
@@ -48,18 +48,23 @@ async def test_automatic_restart_permanent(max_restarts, log_handler, mailbox_en
 
 
 @pytest.mark.parametrize("max_restarts", [1, 3, 5])
-@pytest.mark.parametrize("strategy", [
-    supervisor.restart_strategy.PERMANENT,
-    supervisor.restart_strategy.TRANSIENT,
-])
-async def test_automatic_restart_crash(max_restarts, strategy, log_handler, mailbox_env):
+@pytest.mark.parametrize(
+    "strategy",
+    [
+        supervisor.restart_strategy.PERMANENT,
+        supervisor.restart_strategy.TRANSIENT,
+    ],
+)
+async def test_automatic_restart_crash(
+    max_restarts, strategy, log_handler, mailbox_env
+):
     test_data = SampleData()
 
     with pytest.raises(RuntimeError):
         async with trio.open_nursery() as nursery:
             children = [
                 supervisor.child_spec(
-                    id='sample_task',
+                    id="sample_task",
                     task=sample_task_error,
                     args=[test_data],
                     restart=strategy,
@@ -81,17 +86,20 @@ async def test_automatic_restart_crash(max_restarts, strategy, log_handler, mail
     assert log_handler.has_errors
 
 
-@pytest.mark.parametrize("strategy", [
-    supervisor.restart_strategy.TEMPORARY,
-    supervisor.restart_strategy.TRANSIENT,
-])
+@pytest.mark.parametrize(
+    "strategy",
+    [
+        supervisor.restart_strategy.TEMPORARY,
+        supervisor.restart_strategy.TRANSIENT,
+    ],
+)
 async def test_no_restart(strategy, log_handler, mailbox_env):
     test_data = SampleData()
 
     async with trio.open_nursery() as nursery:
         children = [
             supervisor.child_spec(
-                id='sample_task',
+                id="sample_task",
                 task=sample_task,
                 args=[test_data],
                 restart=strategy,
