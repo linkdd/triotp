@@ -59,7 +59,7 @@ There are 3 ways of sending messages to a generic server:
        if reason is not None:
            print('An error occured:', reason)
 
-       print('Exited with state:' state)
+       print('Exited with state:', state)
 
 
    # if not defined, the gen_server will stop with a NotImplementedError when
