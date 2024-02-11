@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TriOTP, the OTP framework for Python Trio &mdash; triotp 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
     <link rel="canonical" href="https://linkdd.github.io/triotp/index.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> triotp
+
+          
+          
+          <a href="#" class="icon icon-home">
+            triotp
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,8 +63,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>TriOTP, the OTP framework for Python Trio</li>
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TriOTP, the OTP framework for Python Trio</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -68,7 +75,7 @@
            <div itemprop="articleBody">
              
   <section id="triotp-the-otp-framework-for-python-trio">
-<h1>TriOTP, the OTP framework for Python Trio<a class="headerlink" href="#triotp-the-otp-framework-for-python-trio" title="Permalink to this headline"></a></h1>
+<h1>TriOTP, the OTP framework for Python Trio<a class="headerlink" href="#triotp-the-otp-framework-for-python-trio" title="Link to this heading"></a></h1>
 <p>See <a class="reference external" href="https://linkdd.github.io/triotp">documentation</a> for more informations.</p>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="License" src="https://img.shields.io/pypi/l/triotp.svg?style=flat-square" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Development Status" src="https://img.shields.io/pypi/status/triotp.svg?style=flat-square" /></a>
@@ -80,7 +87,7 @@
 <a class="reference external image-reference" href="https://coveralls.io/r/linkdd/triotp"><img alt="Code test coverage" src="https://coveralls.io/repos/github/linkdd/triotp/badge.svg?style=flat-square" /></a>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/triotp/"><img alt="Downloads" src="https://img.shields.io/pypi/dm/triotp.svg?style=flat-square" /></a>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>This project is a simplified implementation of the <a class="reference external" href="https://erlang.org">Erlang</a>/<a class="reference external" href="https://elixir-lang.org/">Elixir</a> <a class="reference external" href="https://en.wikipedia.org/wiki/Open_Telecom_Platform">OTP</a>
 framework.</p>
 <p>It is built on top of the <a class="reference external" href="https://trio.readthedocs.io">Trio</a> async library and provides:</p>
@@ -94,7 +101,7 @@ framework.</p>
 </div></blockquote>
 </section>
 <section id="why">
-<h2>Why ?<a class="headerlink" href="#why" title="Permalink to this headline"></a></h2>
+<h2>Why ?<a class="headerlink" href="#why" title="Link to this heading"></a></h2>
 <p>Since I started writing Erlang/Elixir code, I’ve always wanted to use its
 concepts in other languages.</p>
 <p>I made this library for fun and most importantly: to see if it was possible.
@@ -102,7 +109,7 @@ As it turns out, it is!</p>
 </section>
 </section>
 <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -120,7 +127,7 @@ As it turns out, it is!</p>
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>

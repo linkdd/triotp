@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API Reference &mdash; triotp 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
     <link rel="canonical" href="https://linkdd.github.io/triotp/api/index.html" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> triotp
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            triotp
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>API Reference</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,20 +79,69 @@
            <div itemprop="articleBody">
              
   <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline"></a></h1>
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="triotp.html">triotp package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="triotp.html#module-triotp">Module contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="triotp.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.node">triotp.node module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.application">triotp.application module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.supervisor">triotp.supervisor module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.mailbox">triotp.mailbox module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.gen_server">triotp.gen_server module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.dynamic_supervisor">triotp.dynamic_supervisor module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.logging">triotp.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.helpers">triotp.helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.node">triotp.node module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.node.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.application">triotp.application module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.application.app_spec"><code class="docutils literal notranslate"><span class="pre">app_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.application.start"><code class="docutils literal notranslate"><span class="pre">start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.application.stop"><code class="docutils literal notranslate"><span class="pre">stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.supervisor">triotp.supervisor module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.supervisor.child_spec"><code class="docutils literal notranslate"><span class="pre">child_spec</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.supervisor.options"><code class="docutils literal notranslate"><span class="pre">options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.supervisor.restart_strategy"><code class="docutils literal notranslate"><span class="pre">restart_strategy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.supervisor.start"><code class="docutils literal notranslate"><span class="pre">start()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.mailbox">triotp.mailbox module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.MailboxDoesNotExist"><code class="docutils literal notranslate"><span class="pre">MailboxDoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.MailboxID"><code class="docutils literal notranslate"><span class="pre">MailboxID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.NameAlreadyExist"><code class="docutils literal notranslate"><span class="pre">NameAlreadyExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.NameDoesNotExist"><code class="docutils literal notranslate"><span class="pre">NameDoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.create"><code class="docutils literal notranslate"><span class="pre">create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.destroy"><code class="docutils literal notranslate"><span class="pre">destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.receive"><code class="docutils literal notranslate"><span class="pre">receive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.send"><code class="docutils literal notranslate"><span class="pre">send()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.unregister"><code class="docutils literal notranslate"><span class="pre">unregister()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.mailbox.unregister_all"><code class="docutils literal notranslate"><span class="pre">unregister_all()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.gen_server">triotp.gen_server module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.GenServerExited"><code class="docutils literal notranslate"><span class="pre">GenServerExited</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.NoReply"><code class="docutils literal notranslate"><span class="pre">NoReply</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.Reply"><code class="docutils literal notranslate"><span class="pre">Reply</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.Stop"><code class="docutils literal notranslate"><span class="pre">Stop</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.call"><code class="docutils literal notranslate"><span class="pre">call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.cast"><code class="docutils literal notranslate"><span class="pre">cast()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.reply"><code class="docutils literal notranslate"><span class="pre">reply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.gen_server.start"><code class="docutils literal notranslate"><span class="pre">start()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.dynamic_supervisor">triotp.dynamic_supervisor module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.dynamic_supervisor.start"><code class="docutils literal notranslate"><span class="pre">start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.dynamic_supervisor.start_child"><code class="docutils literal notranslate"><span class="pre">start_child()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.logging">triotp.logging module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.logging.LogLevel"><code class="docutils literal notranslate"><span class="pre">LogLevel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.logging.getLogger"><code class="docutils literal notranslate"><span class="pre">getLogger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triotp.html#module-triotp.helpers">triotp.helpers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triotp.html#triotp.helpers.current_module"><code class="docutils literal notranslate"><span class="pre">current_module()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
