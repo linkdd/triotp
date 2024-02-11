@@ -7,7 +7,7 @@ description = "The OTP framework for Python Trio"
 keywords = ["trio", "async", "otp", "triotp"]
 authors = ["David Delassus <david.jose.delassus@gmail.com>"]
 
-homepage = "https://github.com/linkdd/triotp"
+homepage = "https://linkdd.github.io/triotp"
 repository = "https://github.com/linkdd/triotp"
 
 readme = "README.rst"
@@ -29,7 +29,7 @@ tenacity = "^8.2.3"
 Logbook = "^1.7.0.post0"
 trio-util = "^0.7.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"
 pytest-trio = "^0.7.0"
 Sphinx = "^7.2.6"
