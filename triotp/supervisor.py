@@ -90,7 +90,6 @@ class _retry_strategy:
         self.max_seconds = max_seconds
 
         self.failure_times = deque()
-        self.deleteme = []
 
     def __call__(self, retry_state: tenacity.RetryCallState):
         match self.restart:
@@ -111,12 +110,7 @@ class _retry_strategy:
             return True
 
         oldest_failure = self.failure_times.popleft()
-        self.deleteme.append(now - oldest_failure)
-
-        if now - oldest_failure < self.max_seconds:
-            return False
-
-        return True
+        return now - oldest_failure >= self.max_seconds
 
 
 class _retry_logger:
