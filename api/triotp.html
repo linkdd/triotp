@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>triotp package &mdash; triotp 0.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>triotp package &mdash; triotp 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
     <link rel="canonical" href="https://linkdd.github.io/triotp/api/triotp.html" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=37f418d5"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -132,9 +130,9 @@ you to start the correct applications in the right order.</p>
 </div></blockquote>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyotp</span> <span class="kn">import</span> <span class="n">node</span><span class="p">,</span> <span class="n">application</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">node</span><span class="p">,</span> <span class="n">application</span>
 
-<span class="kn">from</span> <span class="nn">myproject</span> <span class="kn">import</span> <span class="n">myapp1</span><span class="p">,</span> <span class="n">myapp2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">myproject</span><span class="w"> </span><span class="kn">import</span> <span class="n">myapp1</span><span class="p">,</span> <span class="n">myapp2</span>
 
 <span class="n">node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">apps</span><span class="o">=</span><span class="p">[</span>
@@ -173,7 +171,7 @@ you to start the correct applications in the right order.</p>
 <p>An application is a Python module defining an asynchronous function <cite>start</cite>.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">_start_arg</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="n">_start_arg</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -182,12 +180,12 @@ you to start the correct applications in the right order.</p>
 run.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.application.app_spec">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.application.</span></span><span class="sig-name descname"><span class="pre">app_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_arg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permanent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.options" title="triotp.supervisor.options"><span class="pre">options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.application.app_spec" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.application.</span></span><span class="sig-name descname"><span class="pre">app_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_arg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permanent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.options" title="triotp.supervisor.options"><span class="pre">options</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.application.app_spec" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Describe an application</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="triotp.application.app_spec.module">
-<span class="sig-name descname"><span class="pre">module</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">module</span></em><a class="headerlink" href="#triotp.application.app_spec.module" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">module</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleType</span></em><a class="headerlink" href="#triotp.application.app_spec.module" title="Link to this definition"></a></dt>
 <dd><p>Application module</p>
 </dd></dl>
 
@@ -245,11 +243,11 @@ started, it does nothing.</p>
 restarting them if they exit prematurely or if they crash.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">supervisor</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">supervisor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">loop</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;bad luck&#39;</span><span class="p">)</span>
@@ -257,7 +255,7 @@ restarting them if they exit prematurely or if they crash.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">await</span> <span class="n">trio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">start_supervisor</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start_supervisor</span><span class="p">():</span>
     <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">supervisor</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;loop&#39;</span><span class="p">,</span>
@@ -276,7 +274,7 @@ restarting them if they exit prematurely or if they crash.</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.supervisor.child_spec">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">child_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.restart_strategy" title="triotp.supervisor.restart_strategy"><span class="pre">restart_strategy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">restart_strategy.PERMANENT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.child_spec" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">child_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.restart_strategy" title="triotp.supervisor.restart_strategy"><span class="pre">restart_strategy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">restart_strategy.PERMANENT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.child_spec" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Describe an asynchronous task to supervise.</p>
 <dl class="py attribute">
@@ -305,9 +303,15 @@ restarting them if they exit prematurely or if they crash.</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="triotp.supervisor.defer_to_cancelled">
+<span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">defer_to_cancelled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.defer_to_cancelled" title="Link to this definition"></a></dt>
+<dd><p>Defer an exception group to the <code class="docutils literal notranslate"><span class="pre">trio.Cancelled</span></code> exception.</p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.supervisor.options">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_restarts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.options" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_restarts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.options" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Describe the options for the supervisor.</p>
 <dl class="py attribute">
@@ -326,7 +330,7 @@ restarting them if they exit prematurely or if they crash.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.supervisor.restart_strategy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">restart_strategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.restart_strategy" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.supervisor.</span></span><span class="sig-name descname"><span class="pre">restart_strategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.supervisor.restart_strategy" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>Describe when to restart an asynchronous task.</p>
 <dl class="py attribute">
@@ -364,10 +368,10 @@ restarting them if they exit prematurely or if they crash.</p>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">supervisor</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">supervisor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">example</span><span class="p">():</span>
     <span class="n">children_a</span> <span class="o">=</span> <span class="p">[</span>
         <span class="c1"># ...</span>
     <span class="p">]</span>
@@ -395,10 +399,10 @@ started within a nursery.</p>
 tasks to communicate with each other.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">mailbox</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">mailbox</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">task_a</span><span class="p">(</span><span class="n">task_status</span><span class="o">=</span><span class="n">trio</span><span class="o">.</span><span class="n">TASK_STATUS_IGNORED</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">task_a</span><span class="p">(</span><span class="n">task_status</span><span class="o">=</span><span class="n">trio</span><span class="o">.</span><span class="n">TASK_STATUS_IGNORED</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;task_a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mid</span><span class="p">:</span>
         <span class="n">task_status</span><span class="o">.</span><span class="n">started</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
@@ -406,11 +410,11 @@ tasks to communicate with each other.</p>
         <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">task_b</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">task_b</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;task_a&#39;</span><span class="p">,</span> <span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">trio</span><span class="o">.</span><span class="n">open_nursery</span><span class="p">()</span> <span class="k">as</span> <span class="n">nursery</span><span class="p">:</span>
         <span class="k">await</span> <span class="n">nursery</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">task_a</span><span class="p">)</span>
         <span class="n">nursery</span><span class="o">.</span><span class="n">start_soon</span><span class="p">(</span><span class="n">task_b</span><span class="p">)</span>
@@ -419,21 +423,14 @@ tasks to communicate with each other.</p>
 </div>
 <dl class="py exception">
 <dt class="sig sig-object py" id="triotp.mailbox.MailboxDoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">MailboxDoesNotExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.MailboxDoesNotExist" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">MailboxDoesNotExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MailboxID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.MailboxDoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></p>
 <p>Error thrown when the mailbox identifier was not found.</p>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="triotp.mailbox.MailboxID">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">MailboxID</span></span><a class="headerlink" href="#triotp.mailbox.MailboxID" title="Link to this definition"></a></dt>
-<dd><p>Mailbox identifier (UUID4)</p>
-<p>alias of TypeVar(‘MailboxID’, bound=<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>)</p>
-</dd></dl>
-
 <dl class="py exception">
 <dt class="sig sig-object py" id="triotp.mailbox.NameAlreadyExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">NameAlreadyExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.NameAlreadyExist" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">NameAlreadyExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.NameAlreadyExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></p>
 <p>Error thrown when trying to register a mailbox to an already registered
 name.</p>
@@ -441,14 +438,14 @@ name.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="triotp.mailbox.NameDoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">NameDoesNotExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.NameDoesNotExist" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">NameDoesNotExist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.mailbox.NameDoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></p>
 <p>Error thrown when trying to unregister a non-existing name.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.create">
-<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></span><a class="headerlink" href="#triotp.mailbox.create" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MailboxID</span></span></span><a class="headerlink" href="#triotp.mailbox.create" title="Link to this definition"></a></dt>
 <dd><p>Create a new mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -459,7 +456,7 @@ name.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.destroy">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.destroy" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MailboxID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.destroy" title="Link to this definition"></a></dt>
 <dd><p>Close and destroy a mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -473,7 +470,7 @@ name.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.open">
-<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncContextManager</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#triotp.mailbox.open" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">MailboxID</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#triotp.mailbox.open" title="Link to this definition"></a></dt>
 <dd><p>Shortcut for <cite>create()</cite>, <cite>register()</cite> followed by a <cite>destroy()</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -498,7 +495,7 @@ name.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.receive">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#triotp.mailbox.receive" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#triotp.mailbox.receive" title="Link to this definition"></a></dt>
 <dd><p>Consume a message from a mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -522,7 +519,7 @@ no message was received during the timespan set</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.register">
-<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.register" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.register" title="Link to this definition"></a></dt>
 <dd><p>Assign a name to a mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -542,7 +539,7 @@ no message was received during the timespan set</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.send">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.send" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.send" title="Link to this definition"></a></dt>
 <dd><p>Send a message to a mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -573,7 +570,7 @@ no message was received during the timespan set</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.mailbox.unregister_all">
-<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">unregister_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.unregister_all" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">triotp.mailbox.</span></span><span class="sig-name descname"><span class="pre">unregister_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MailboxID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.mailbox.unregister_all" title="Link to this definition"></a></dt>
 <dd><p>Unregister all names associated to a mailbox.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -608,41 +605,41 @@ your application such as:</p>
 &gt; raised on the caller side.</p>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp.helpers</span> <span class="kn">import</span> <span class="n">current_module</span>
-<span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">gen_server</span><span class="p">,</span> <span class="n">mailbox</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">current_module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_server</span><span class="p">,</span> <span class="n">mailbox</span>
 
 
 <span class="vm">__module__</span> <span class="o">=</span> <span class="n">current_module</span><span class="p">()</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kvstore&#39;</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;kvstore&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;kvstore&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;set&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;kvstore&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">printstate</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">printstate</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;kvstore&#39;</span><span class="p">,</span> <span class="s1">&#39;printstate&#39;</span><span class="p">)</span>
 
 <span class="c1"># gen_server callbacks</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="n">_init_arg</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">_init_arg</span><span class="p">):</span>
     <span class="n">state</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">state</span>
 
 
 <span class="c1"># optional</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">terminate</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;An error occured:&#39;</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span>
 
@@ -651,7 +648,7 @@ your application such as:</p>
 
 <span class="c1"># if not defined, the gen_server will stop with a NotImplementedError when</span>
 <span class="c1"># receiving a call</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">_caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">_caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
         <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
             <span class="n">val</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -669,7 +666,7 @@ your application such as:</p>
 
 <span class="c1"># if not defined, the gen_server will stop with a NotImplementedError when</span>
 <span class="c1"># receiving a cast</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_cast</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_cast</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
         <span class="k">case</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">gen_server</span><span class="o">.</span><span class="n">Stop</span><span class="p">(),</span> <span class="n">state</span><span class="p">)</span>
@@ -680,7 +677,7 @@ your application such as:</p>
 
 
 <span class="c1"># optional</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_info</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="k">match</span> <span class="n">message</span><span class="p">:</span>
         <span class="k">case</span> <span class="s1">&#39;printstate&#39;</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
@@ -694,21 +691,21 @@ your application such as:</p>
 </div>
 <dl class="py exception">
 <dt class="sig sig-object py" id="triotp.gen_server.GenServerExited">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">GenServerExited</span></span><a class="headerlink" href="#triotp.gen_server.GenServerExited" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">GenServerExited</span></span><a class="headerlink" href="#triotp.gen_server.GenServerExited" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Raised when the generic server exited during a call.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.gen_server.NoReply">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">NoReply</span></span><a class="headerlink" href="#triotp.gen_server.NoReply" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">NoReply</span></span><a class="headerlink" href="#triotp.gen_server.NoReply" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Return an instance of this class to not send a reply to the caller.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.gen_server.Reply">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">Reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.gen_server.Reply" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">Reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.gen_server.Reply" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Return an instance of this class to send a reply to the caller.</p>
 <dl class="py attribute">
@@ -721,7 +718,7 @@ your application such as:</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.gen_server.Stop">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseException</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.gen_server.Stop" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseException</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.gen_server.Stop" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Return an instance of this class to stop the generic server.</p>
 <dl class="py attribute">
@@ -733,7 +730,7 @@ your application such as:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.gen_server.call">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#triotp.gen_server.call" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#triotp.gen_server.call" title="Link to this definition"></a></dt>
 <dd><p>Send a request to the generic server and wait for a response.</p>
 <p>This function creates a temporary bi-directional channel. The writer is
 passed to the <cite>handle_call</cite> function and is used to send the response back
@@ -760,7 +757,7 @@ to the caller.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.gen_server.cast">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.cast" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.cast" title="Link to this definition"></a></dt>
 <dd><p>Send a message to the generic server without expecting a response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -774,7 +771,7 @@ to the caller.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.gen_server.reply">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MemorySendChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.reply" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">reply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MemorySendChannel</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.reply" title="Link to this definition"></a></dt>
 <dd><p>The <cite>handle_call</cite> callback can start a background task to handle a slow
 request and return a <cite>NoReply</cite> instance. Use this function in the background
 task to send the response to the caller at a later time.</p>
@@ -788,16 +785,16 @@ task to send the response to the caller at a later time.</p>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">gen_server</span><span class="p">,</span> <span class="n">supervisor</span><span class="p">,</span> <span class="n">dynamic_supervisor</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_server</span><span class="p">,</span> <span class="n">supervisor</span><span class="p">,</span> <span class="n">dynamic_supervisor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">slow_task</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">caller</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">slow_task</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">caller</span><span class="p">):</span>
     <span class="c1"># do stuff with message</span>
     <span class="k">await</span> <span class="n">gen_server</span><span class="o">.</span><span class="n">reply</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_call</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">dynamic_supervisor</span><span class="o">.</span><span class="n">start_child</span><span class="p">(</span>
         <span class="s1">&#39;slow-task-pool&#39;</span><span class="p">,</span>
         <span class="n">supervisor</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span>
@@ -816,7 +813,7 @@ task to send the response to the caller at a later time.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.gen_server.start">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_arg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.start" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.gen_server.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_arg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.gen_server.start" title="Link to this definition"></a></dt>
 <dd><p>Starts the generic server loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -845,13 +842,13 @@ receive requests to start new children from other tasks.</p>
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># app.py</span>
 
-<span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">supervisor</span><span class="p">,</span> <span class="n">dynamic_supervisor</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">supervisor</span><span class="p">,</span> <span class="n">dynamic_supervisor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">worker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">worker</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
     <span class="n">opts</span> <span class="o">=</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
     <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">supervisor</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span>
@@ -895,11 +892,11 @@ receive requests to start new children from other tasks.</p>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id12" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">dynamic_supervisor</span><span class="p">,</span> <span class="n">supervisor</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">dynamic_supervisor</span><span class="p">,</span> <span class="n">supervisor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">example</span><span class="p">():</span>
     <span class="n">opts</span> <span class="o">=</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
     <span class="n">child_spec</span> <span class="o">=</span> <span class="c1"># ...</span>
 
@@ -913,7 +910,7 @@ receive requests to start new children from other tasks.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.dynamic_supervisor.start_child">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.dynamic_supervisor.</span></span><span class="sig-name descname"><span class="pre">start_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#triotp.mailbox.MailboxID" title="triotp.mailbox.MailboxID"><span class="pre">MailboxID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.child_spec" title="triotp.supervisor.child_spec"><span class="pre">child_spec</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.dynamic_supervisor.start_child" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.dynamic_supervisor.</span></span><span class="sig-name descname"><span class="pre">start_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_or_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">MailboxID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#triotp.supervisor.child_spec" title="triotp.supervisor.child_spec"><span class="pre">child_spec</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#triotp.dynamic_supervisor.start_child" title="Link to this definition"></a></dt>
 <dd><p>Start a new task in the specified supervisor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -932,7 +929,7 @@ receive requests to start new children from other tasks.</p>
 handler.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="triotp.logging.LogLevel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.logging.</span></span><span class="sig-name descname"><span class="pre">LogLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.logging.LogLevel" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">triotp.logging.</span></span><span class="sig-name descname"><span class="pre">LogLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#triotp.logging.LogLevel" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>TriOTP node’s logging level</p>
 <dl class="py attribute">
@@ -998,7 +995,7 @@ handler.</p>
 <span id="triotp-helpers-module"></span><h3>triotp.helpers module<a class="headerlink" href="#module-triotp.helpers" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="triotp.helpers.current_module">
-<span class="sig-prename descclassname"><span class="pre">triotp.helpers.</span></span><span class="sig-name descname"><span class="pre">current_module</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">module</span></span></span><a class="headerlink" href="#triotp.helpers.current_module" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">triotp.helpers.</span></span><span class="sig-name descname"><span class="pre">current_module</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ModuleType</span></span></span><a class="headerlink" href="#triotp.helpers.current_module" title="Link to this definition"></a></dt>
 <dd><p>This function should be called at the root of a module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -1007,12 +1004,12 @@ handler.</p>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">Example</span><a class="headerlink" href="#id13" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp.helpers</span> <span class="kn">import</span> <span class="n">current_module</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">current_module</span>
 
 <span class="vm">__module__</span> <span class="o">=</span> <span class="n">current_module</span><span class="p">()</span>  <span class="c1"># THIS WORKS</span>
 
 
-<span class="k">def</span> <span class="nf">get_module</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_module</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">current_module</span><span class="p">()</span>  <span class="c1"># THIS WON&#39;T WORK</span>
 </pre></div>
 </div>
@@ -1033,7 +1030,7 @@ handler.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, David Delassus &lt;david.jose.delassus@gmail.com&gt;.</p>
+    <p>&#169; Copyright 2021, David Delassus&lt;david.jose.delassus@gmail.com&gt;.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

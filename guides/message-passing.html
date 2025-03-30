@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Message-Passing between tasks with mailboxes &mdash; triotp 0.2.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>Message-Passing between tasks with mailboxes &mdash; triotp 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
     <link rel="canonical" href="https://linkdd.github.io/triotp/guides/message-passing.html" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=37f418d5"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -96,11 +94,11 @@ be used without the rest of <strong>triotp</strong>.</p>
 <h2>Initializing the mailbox registry<a class="headerlink" href="#initializing-the-mailbox-registry" title="Link to this heading"></a></h2>
 <p>This step is done automatically when a node starts, but it is required if you
 want to use it standalone:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">mailbox</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">mailbox</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">mailbox</span><span class="o">.</span><span class="n">_init</span><span class="p">()</span>
 
 
@@ -111,14 +109,14 @@ want to use it standalone:</p>
 <section id="creating-a-mailbox">
 <h2>Creating a mailbox<a class="headerlink" href="#creating-a-mailbox" title="Link to this heading"></a></h2>
 <p>There is 2 ways of creating a mailbox:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">your_task</span><span class="p">():</span>
     <span class="n">mid</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
     <span class="c1"># do stuff</span>
     <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">destroy</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">your_task</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">mid</span><span class="p">:</span>
         <span class="c1"># do stuff</span>
 </pre></div>
@@ -126,7 +124,7 @@ want to use it standalone:</p>
 <p>The <cite>mid</cite> variable holds a unique reference to the mailbox. But it can be hard to
 pass this reference between tasks. Therefore, you can register a name referencing
 this identifier:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">your_task</span><span class="p">():</span>
     <span class="n">mid</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
     <span class="n">mailbox</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
     <span class="c1"># do stuff</span>
@@ -134,7 +132,7 @@ this identifier:</p>
 </pre></div>
 </div>
 <p>Or:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">your_task</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">your_task</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">):</span>
         <span class="c1"># do stuff</span>
 </pre></div>
@@ -143,11 +141,11 @@ this identifier:</p>
 <section id="sending-and-receiving-messages">
 <h2>Sending and receiving messages<a class="headerlink" href="#sending-and-receiving-messages" title="Link to this heading"></a></h2>
 <p>In this example, we create a mailbox, wait for a single message, then close it:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">triotp</span> <span class="kn">import</span> <span class="n">mailbox</span>
-<span class="kn">import</span> <span class="nn">trio</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">triotp</span><span class="w"> </span><span class="kn">import</span> <span class="n">mailbox</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">task_status</span><span class="o">=</span><span class="n">trio</span><span class="o">.</span><span class="n">TASK_STATUS_IGNORED</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">consumer</span><span class="p">(</span><span class="n">task_status</span><span class="o">=</span><span class="n">trio</span><span class="o">.</span><span class="n">TASK_STATUS_IGNORED</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mid</span><span class="p">:</span>
         <span class="n">task_status</span><span class="o">.</span><span class="n">started</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
@@ -155,11 +153,11 @@ this identifier:</p>
         <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">producer</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">producer</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">trio</span><span class="o">.</span><span class="n">open_nursery</span><span class="p">()</span> <span class="k">as</span> <span class="n">nursery</span><span class="p">:</span>
         <span class="k">await</span> <span class="n">nursery</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">consumer</span><span class="p">)</span>
         <span class="n">nursery</span><span class="o">.</span><span class="n">start_soon</span><span class="p">(</span><span class="n">producer</span><span class="p">)</span>
@@ -182,7 +180,7 @@ this identifier:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, David Delassus &lt;david.jose.delassus@gmail.com&gt;.</p>
+    <p>&#169; Copyright 2021, David Delassus&lt;david.jose.delassus@gmail.com&gt;.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
