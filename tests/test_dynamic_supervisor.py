@@ -56,11 +56,14 @@ async def test_automatic_restart_permanent(max_restarts, log_handler, mailbox_en
     ],
 )
 async def test_automatic_restart_crash(
-    max_restarts, strategy, log_handler, mailbox_env
+    max_restarts,
+    strategy,
+    log_handler,
+    mailbox_env,
 ):
     test_data = SampleData()
 
-    with pytest.raises(RuntimeError):
+    with trio.testing.RaisesGroup(RuntimeError, flatten_subgroups=True):
         async with trio.open_nursery() as nursery:
             children = [
                 supervisor.child_spec(

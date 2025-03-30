@@ -28,7 +28,7 @@ async def test_app_automatic_restart_permanent(test_data, max_restarts, log_hand
 
 @pytest.mark.parametrize("max_restarts", [1, 3, 5])
 async def test_app_automatic_restart_crash(test_data, max_restarts, log_handler):
-    with pytest.raises(RuntimeError):
+    with trio.testing.RaisesGroup(RuntimeError, flatten_subgroups=True):
         async with trio.open_nursery() as nursery:
             application._init(nursery)
 
