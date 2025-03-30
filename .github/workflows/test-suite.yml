@@ -11,24 +11,21 @@ jobs:
         uses: actions/checkout@main
 
       - name: setup@python
-        uses: actions/setup-python@main
+        uses: pdm-project/setup-pdm@v4
         with:
-          python-version: '3.10'
-
-      - name: setup@poetry
-        run: pip install poetry
+          python-version: '3.13'
 
       - name: setup@venv
-        run: poetry install
+        run: pdm install
 
       - name: lint@black
-        run: poetry run black --check triotp --target-version py310
+        run: pdm run black --check src/ --target-version py310
 
       - name: test@pytest
-        run: poetry run pytest --cov triotp --cov-report xml
+        run: pdm run pytest --cov src/ --cov-report xml
 
       - name: coverage@coveralls
-        run: poetry run coveralls
+        run: pdm run coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

@@ -19,20 +19,15 @@ jobs:
           path: docs/build/html
 
       - name: setup@python
-        uses: actions/setup-python@main
+        uses: pdm-project/setup-pdm@v4
         with:
-          python-version: '3.10'
-
-      - name: setup@poetry
-        run: pip install poetry
+          python-version: '3.13'
 
       - name: setup@venv
-        run: poetry install
+        run: pdm install
 
       - name: docs@sphinx
-        run: |
-          cd docs
-          poetry run make html
+        run: pdm run make -C docs html
 
       - name: publish@scm
         run: |
