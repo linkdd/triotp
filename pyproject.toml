@@ -1,47 +1,51 @@
-[tool.poetry]
+[project]
 name = "triotp"
 version = "0.2.1"
-license = "MIT"
-
 description = "The OTP framework for Python Trio"
-keywords = ["trio", "async", "otp", "triotp"]
-authors = ["David Delassus <david.jose.delassus@gmail.com>"]
 
-homepage = "https://linkdd.github.io/triotp"
-repository = "https://github.com/linkdd/triotp"
-
-readme = "README.rst"
-include = [
-  "LICENSE.txt"
+authors = [
+  {name = "David Delassus", email = "david.jose.delassus@gmail.com"},
 ]
 
+readme = "README.rst"
+license = {text = "MIT"}
+keywords = ["trio", "async", "otp", "triotp"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Framework :: Trio",
   "Intended Audience :: Developers",
-  "Topic :: Software Development"
+  "Topic :: Software Development",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-trio = "^0.19.0"
-tenacity = "^8.2.3"
-Logbook = "^1.7.0.post0"
-trio-util = "^0.7.0"
+requires-python = ">=3.10"
+dependencies = [
+  "trio>=0.19.0",
+  "tenacity>=8.2.3",
+  "Logbook>=1.7.0.post0",
+  "trio-util>=0.7.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.0.0"
-pytest-trio = "^0.7.0"
-Sphinx = "^7.2.6"
-sphinx-rtd-theme = "^2.0.0"
-pytest-cov = "^4.1.0"
-black = "^24.1.1"
-mypy = "^1.8.0"
-coveralls = "^3.3.1"
+[project.urls]
+homepage = "https://linkdd.github.io/triotp"
+repository = "https://github.com/linkdd/triotp"
 
-[tool.poetry.group.docs.dependencies]
-toml = "^0.10.2"
+[dependency-groups]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-trio>=0.7.0",
+  "Sphinx>=7.2.6",
+  "sphinx-rtd-theme>=2.0.0",
+  "pytest-cov>=4.1.0",
+  "black>=24.1.1",
+  "mypy>=1.8.0",
+  "coveralls>=3.3.1",
+]
+docs = [
+  "toml>=0.10.2",
+]
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.pdm]
+distribution = false
+
+[tool.pdm.build]
+includes = ["LICENSE.txt"]
