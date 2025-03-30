@@ -6,30 +6,26 @@
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+from pathlib import Path
+import sys
 
+BASE_DIR = Path.cwd().parent.parent
+sys.path.insert(0, str(BASE_DIR / "src"))
 
 # -- Project information -----------------------------------------------------
-from pathlib import Path
 import toml
 
-pyproject_path = Path.cwd().parent.parent / "pyproject.toml"
+pyproject_path = BASE_DIR / "pyproject.toml"
 
 with open(pyproject_path) as f:
     pyproject = toml.load(f)
 
-project = pyproject["tool"]["poetry"]["name"]
-author = pyproject["tool"]["poetry"]["authors"][0]
+project = pyproject["project"]["name"]
+author = "{name}<{email}>".format(**pyproject["project"]["authors"][0])
 copyright = f"2021, {author}"
 
 # The full version, including alpha/beta/rc tags
-release = pyproject["tool"]["poetry"]["version"]
+release = pyproject["project"]["version"]
 
 
 # -- General configuration ---------------------------------------------------
@@ -58,6 +54,6 @@ html_theme = "sphinx_rtd_theme"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_static_path = []
 
 html_baseurl = "https://linkdd.github.io/triotp/"
