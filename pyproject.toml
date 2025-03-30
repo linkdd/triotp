@@ -44,8 +44,12 @@ docs = [
   "toml>=0.10.2",
 ]
 
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
 [tool.pdm]
-distribution = false
+distribution = true
 
 [tool.pdm.build]
 includes = ["LICENSE.txt"]
