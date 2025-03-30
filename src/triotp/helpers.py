@@ -1,7 +1,7 @@
+from types import ModuleType
+
 import inspect
 import sys
-
-from types import ModuleType
 
 
 def current_module() -> ModuleType:
@@ -38,3 +38,5 @@ def current_module() -> ModuleType:
             break
 
         stack_frame = stack_frame.f_back
+
+    raise RuntimeError("Unable to determine the current module.")

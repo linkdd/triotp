@@ -6,7 +6,8 @@ handler.
 """
 
 from enum import Enum, auto
-import logbook
+
+import logbook  # type: ignore[import-untyped]
 
 
 class LogLevel(Enum):

@@ -27,12 +27,14 @@ list of application to start.
    )
 """
 
-from triotp import mailbox, application, logging
-from logbook import StreamHandler, NullHandler
-import trio
+from typing import Optional
+
 import sys
 
-from typing import Optional
+from logbook import StreamHandler, NullHandler  # type: ignore[import-untyped]
+import trio
+
+from triotp import mailbox, application, logging
 
 
 def run(

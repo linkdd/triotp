@@ -37,20 +37,27 @@ tasks to communicate with each other.
            nursery.start_soon(task_b)
 """
 
+from collections.abc import Callable, Awaitable
+from typing import Union, Optional, Any, AsyncIterator
+
 from contextlib import asynccontextmanager
 from contextvars import ContextVar
 from uuid import uuid4
+
 import trio
 
-from collections.abc import Callable, Awaitable
-from typing import TypeVar, Union, Optional, Any, AsyncContextManager
 
+type MailboxID = str  #: Mailbox identifier (UUID4)
 
-MailboxID = TypeVar("MailboxID", bound=str)  #: Mailbox identifier (UUID4)
+type MailboxRegistry = dict[
+    MailboxID,
+    tuple[trio.MemorySendChannel, trio.MemoryReceiveChannel],
+]
 
+type NameRegistry = dict[str, MailboxID]
 
-context_mailbox_registry = ContextVar("mailbox_registry")
-context_name_registry = ContextVar("name_registry")
+context_mailbox_registry = ContextVar[MailboxRegistry]("mailbox_registry")
+context_name_registry = ContextVar[NameRegistry]("name_registry")
 
 
 class MailboxDoesNotExist(RuntimeError):
@@ -174,7 +181,7 @@ def unregister_all(mid: MailboxID) -> None:
 
 
 @asynccontextmanager
-async def open(name: Optional[str] = None) -> AsyncContextManager[MailboxID]:
+async def open(name: Optional[str] = None) -> AsyncIterator[MailboxID]:
     """
     Shortcut for `create()`, `register()` followed by a `destroy()`.
 
@@ -225,14 +232,14 @@ async def send(name_or_mid: Union[str, MailboxID], message: Any) -> None:
     if mid not in mailbox_registry:
         raise MailboxDoesNotExist(mid)
 
-    wchan, _ = mailbox_registry.get(mid)
+    wchan, _ = mailbox_registry[mid]
     await wchan.send(message)
 
 
 async def receive(
     mid: MailboxID,
     timeout: Optional[float] = None,
-    on_timeout: Callable[[], Awaitable[Any]] = None,
+    on_timeout: Optional[Callable[[], Awaitable[Any]]] = None,
 ) -> Any:
     """
     Consume a message from a mailbox.
@@ -253,7 +260,7 @@ async def receive(
     if mid not in mailbox_registry:
         raise MailboxDoesNotExist(mid)
 
-    _, rchan = mailbox_registry.get(mid)
+    _, rchan = mailbox_registry[mid]
 
     if timeout is not None:
         try:

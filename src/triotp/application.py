@@ -11,18 +11,20 @@ Usually, the application will start a supervisor containing the child tasks to
 run.
 """
 
-from triotp import supervisor
-
-from contextvars import ContextVar
-from dataclasses import dataclass
-import trio
-
 from typing import Optional, Any
 from types import ModuleType
 
 
-context_app_nursery = ContextVar("app_nursery")
-context_app_registry = ContextVar("app_registry")
+from contextvars import ContextVar
+from dataclasses import dataclass
+
+import trio
+
+from triotp import supervisor
+
+
+context_app_nursery = ContextVar[trio.Nursery]("app_nursery")
+context_app_registry = ContextVar[dict[str, trio.Nursery]]("app_registry")
 
 
 @dataclass
@@ -59,6 +61,8 @@ async def start(app: app_spec) -> None:
 
     if app.module.__name__ not in registry:
         local_nursery = await nursery.start(_app_scope, app)
+        assert local_nursery is not None
+
         registry[app.module.__name__] = local_nursery
 
 

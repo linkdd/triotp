@@ -104,13 +104,14 @@ There are 3 ways of sending messages to a generic server:
        return (gen_server.NoReply(), state)
 """
 
-from triotp import mailbox, logging
-
-from dataclasses import dataclass
-import trio
-
 from typing import TypeVar, Union, Optional, Any
 from types import ModuleType
+
+from dataclasses import dataclass
+
+import trio
+
+from triotp import mailbox, logging
 
 
 State = TypeVar("State")
@@ -213,7 +214,7 @@ async def call(
 
     """
 
-    wchan, rchan = trio.open_memory_channel(0)
+    wchan, rchan = trio.open_memory_channel[Exception | Any](0)
     message = _CallMessage(source=wchan, payload=payload)
 
     await mailbox.send(name_or_mid, message)
@@ -251,7 +252,7 @@ async def cast(
     await mailbox.send(name_or_mid, message)
 
 
-async def reply(caller: trio.MemorySendChannel, response: Any) -> None:
+async def reply(caller: trio.MemorySendChannel[Any], response: Any) -> None:
     """
     The `handle_call` callback can start a background task to handle a slow
     request and return a `NoReply` instance. Use this function in the background
@@ -296,7 +297,7 @@ async def _loop(
 ) -> None:
     async with mailbox.open(name) as mid:
         try:
-            state = await _init(module, init_arg)
+            state: Any = await _init(module, init_arg)
             looping = True
 
             while looping:
@@ -361,6 +362,7 @@ async def _handle_call(
         raise NotImplementedError(f"{module.__name__}.handle_call")
 
     result = await handler(message, source, state)
+    continuation: _Loop | _Raise
 
     match result:
         case (Reply(payload), new_state):
@@ -400,6 +402,7 @@ async def _handle_cast(
         raise NotImplementedError(f"{module.__name__}.handle_cast")
 
     result = await handler(message, state)
+    continuation: _Loop | _Raise
 
     match result:
         case (NoReply(), new_state):
@@ -433,6 +436,7 @@ async def _handle_info(
         return _Loop(yes=True), state
 
     result = await handler(message, state)
+    continuation: _Loop | _Raise
 
     match result:
         case (NoReply(), new_state):

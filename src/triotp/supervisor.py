@@ -33,17 +33,18 @@ restarting them if they exit prematurely or if they crash.
        await supervisor.start(children, opts)
 """
 
+from collections.abc import Callable, Awaitable
+from typing import Any
+
 from collections import deque, defaultdict
 from contextlib import contextmanager
 from dataclasses import dataclass
 from enum import Enum, auto
-from logbook import Logger
+
+from logbook import Logger  # type: ignore[import-untyped]
 import tenacity
 
 import trio
-
-from collections.abc import Callable, Awaitable
-from typing import Any
 
 
 class restart_strategy(Enum):
@@ -89,9 +90,11 @@ class _retry_strategy:
         self.max_restarts = max_restarts
         self.max_seconds = max_seconds
 
-        self.failure_times = deque()
+        self.failure_times = deque[float]()
 
     def __call__(self, retry_state: tenacity.RetryCallState):
+        assert retry_state.outcome is not None
+
         match self.restart:
             case restart_strategy.PERMANENT:
                 pass
@@ -118,11 +121,15 @@ class _retry_logger:
         self.logger = Logger(child_id)
 
     def __call__(self, retry_state: tenacity.RetryCallState) -> None:
+        assert retry_state.outcome is not None
+
         if isinstance(retry_state.outcome.exception(), trio.Cancelled):
             self.logger.info("task cancelled")
 
         elif retry_state.outcome.failed:
             exception = retry_state.outcome.exception()
+            assert exception is not None
+
             exc_info = (exception.__class__, exception, exception.__traceback__)
             self.logger.error("restarting task after failure", exc_info=exc_info)
 
@@ -205,7 +212,7 @@ def defer_to_cancelled():
 
     except BaseExceptionGroup as root_exc_group:
         exc_groups = [root_exc_group]
-        excs_by_repr: dict[str, BaseException] = {}
+        excs_by_repr = {}
 
         while exc_groups:
             exc_group = exc_groups.pop()
@@ -223,7 +230,7 @@ def defer_to_cancelled():
 
                 excs_by_repr[repr(exc)] = exc
 
-        excs_by_priority: dict[int, list[BaseException]] = defaultdict(list)
+        excs_by_priority = defaultdict(list)
 
         for exc in excs_by_repr.values():
             for priority, privileged_type in enumerate(privileged_types):

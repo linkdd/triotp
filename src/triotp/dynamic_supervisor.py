@@ -39,10 +39,11 @@ receive requests to start new children from other tasks.
            )
 """
 
-from triotp import supervisor, mailbox
+from typing import Optional, Union
+
 import trio
 
-from typing import Optional, Union
+from triotp import supervisor, mailbox
 
 
 async def start(
