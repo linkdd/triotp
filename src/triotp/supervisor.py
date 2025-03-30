@@ -33,13 +33,13 @@ restarting them if they exit prematurely or if they crash.
        await supervisor.start(children, opts)
 """
 
+from collections import deque, defaultdict
+from contextlib import contextmanager
 from dataclasses import dataclass
-from collections import deque
 from enum import Enum, auto
 from logbook import Logger
 import tenacity
 
-import trio_util
 import trio
 
 from collections.abc import Callable, Awaitable
@@ -183,8 +183,59 @@ async def _child_monitor(
         after=_retry_logger(spec.id),
     )
     async def _child_runner():
-        with trio_util.defer_to_cancelled():
+        with defer_to_cancelled():
             async with trio.open_nursery() as nursery:
                 nursery.start_soon(spec.task, *spec.args)
 
     await _child_runner()
+
+
+@contextmanager
+def defer_to_cancelled():
+    """
+    Defer an exception group to the ``trio.Cancelled`` exception.
+    """
+
+    privileged_types = (trio.Cancelled,)
+    propagate = True
+    strict = True
+
+    try:
+        yield
+
+    except BaseExceptionGroup as root_exc_group:
+        exc_groups = [root_exc_group]
+        excs_by_repr: dict[str, BaseException] = {}
+
+        while exc_groups:
+            exc_group = exc_groups.pop()
+
+            for exc in exc_group.exceptions:
+                if isinstance(exc, BaseExceptionGroup):
+                    exc_groups.append(exc)
+                    continue
+
+                if not isinstance(exc, privileged_types):
+                    if propagate:
+                        raise
+
+                    raise RuntimeError("Unhandled exception group") from root_exc_group
+
+                excs_by_repr[repr(exc)] = exc
+
+        excs_by_priority: dict[int, list[BaseException]] = defaultdict(list)
+
+        for exc in excs_by_repr.values():
+            for priority, privileged_type in enumerate(privileged_types):
+                if isinstance(exc, privileged_type):
+                    excs_by_priority[priority].append(exc)
+
+        priority_excs = excs_by_priority[min(excs_by_priority)]
+
+        if strict and len(priority_excs) > 1:
+            if propagate:
+                raise
+
+            raise RuntimeError("Unhandled exception group") from root_exc_group
+
+        raise priority_excs[0]

@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:598b212599863fc36d767ef517d0ec6ccfb9d344396e2fe1fb9063228f59d64f"
+content_hash = "sha256:bee6f65e499e92229b33b607f544857ed0cf900daf57ba07fe5cbb733979f05e"
 
 [[metadata.targets]]
 requires_python = ">=3.13"
@@ -19,17 +19,6 @@ groups = ["dev"]
 files = [
     {file = "alabaster-1.0.0-py3-none-any.whl", hash = "sha256:fc6786402dc3fcb2de3cabd5fe455a2db534b371124f1f21de8731783dec828b"},
     {file = "alabaster-1.0.0.tar.gz", hash = "sha256:c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e"},
-]
-
-[[package]]
-name = "async-generator"
-version = "1.10"
-requires_python = ">=3.5"
-summary = "Async generators and context managers for Python 3.5+"
-groups = ["default"]
-files = [
-    {file = "async_generator-1.10-py3-none-any.whl", hash = "sha256:01c7bf666359b4967d2cda0000cc2e4af16a0ae098cbffcb8472fb9e8ad6585b"},
-    {file = "async_generator-1.10.tar.gz", hash = "sha256:6ebb3d106c12920aaae42ccb6f787ef5eefdcdd166ea3d628fa8476abe712144"},
 ]
 
 [[package]]
@@ -712,21 +701,6 @@ dependencies = [
 files = [
     {file = "trio-0.29.0-py3-none-any.whl", hash = "sha256:d8c463f1a9cc776ff63e331aba44c125f423a5a13c684307e828d930e625ba66"},
     {file = "trio-0.29.0.tar.gz", hash = "sha256:ea0d3967159fc130acb6939a0be0e558e364fee26b5deeecc893a6b08c361bdf"},
-]
-
-[[package]]
-name = "trio-util"
-version = "0.8.0"
-requires_python = ">=3.8"
-summary = "Utility library for the Trio async/await framework"
-groups = ["default"]
-dependencies = [
-    "async-generator",
-    "trio>=0.11.0",
-]
-files = [
-    {file = "trio_util-0.8.0-py3-none-any.whl", hash = "sha256:3ba4a2bc02934b4d756eaadb861a0aa045f0fd1bf8060f17bd5273c52780099a"},
-    {file = "trio_util-0.8.0.tar.gz", hash = "sha256:b95030a9976a7a8ed8f61c24cafbc682ecdde76d1bca1b8b42c74df074adc16d"},
 ]
 
 [[package]]

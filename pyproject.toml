@@ -22,7 +22,6 @@ dependencies = [
   "trio>=0.29.0",
   "tenacity>=9.0.0",
   "Logbook>=1.8.1",
-  "trio-util>=0.8.0",
 ]
 
 [project.urls]
