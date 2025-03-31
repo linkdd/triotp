@@ -7,10 +7,8 @@
 # -- Path setup --------------------------------------------------------------
 
 from pathlib import Path
-import sys
 
 BASE_DIR = Path.cwd().parent.parent
-sys.path.insert(0, str(BASE_DIR / "src"))
 
 # -- Project information -----------------------------------------------------
 import toml
